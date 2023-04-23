@@ -1,4 +1,4 @@
-if type lsd > /dev/null; then
+if type -p lsd > /dev/null; then
  alias l="lsd --group-directories-first --date '+%F %T'"
  alias ll="lsd --group-directories-first --long --date '+%F %T'"
  alias la="lsd --group-directories-first --all --date '+%F %T'"
@@ -9,7 +9,7 @@ if type lsd > /dev/null; then
  alias llt="lsd --group-directories-first --long --sort time --date '+%F %T'"
  alias llat="lsd --group-directories-first --long --all --sort time --date '+%F %T'"
  alias llta="lsd --group-directories-first --long --all --sort time --date '+%F %T'"
-elif type exa > /dev/null; then
+elif type -p exa > /dev/null; then
  alias l="exa --time-style long-iso"
  alias ll="exa --long --time-style long-iso"
  alias la="exa --all --time-style long-iso"
@@ -20,7 +20,7 @@ elif type exa > /dev/null; then
  alias llt="exa --long --sort time --time-style long-iso"
  alias llat="exa --long --all --sort time --time-style long-iso"
  alias llta="exa --long --all --sort time --time-style long-iso"
-elif type lc > /dev/null; then
+elif type -p lc > /dev/null; then
  alias l="lc --excl=dot"
  alias ll="lc -sj"
  alias la="lc"
