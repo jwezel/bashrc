@@ -1,11 +1,11 @@
-[ -n "$BASH_DEBUG" ] && echo Running $0
+[ -n "$BASH_DEBUG" ] && echo Running $BASH_SOURCE
 [ -f ~/.bash_debug ] && source ~/.bash_debug
 [ -f ~/.bash_functions ] && source ~/.bash_functions
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
-[ -f /opt/bash/run.sh ] && {
-  source /opt/bash/run.sh rc
+[ -f $(dirname $(readlink -f $BASH_SOURCE))/run.sh ] && {
+  source $(dirname $(readlink -f $BASH_SOURCE))/run.sh rc
   [[ $- =~ i ]] && {
-    source /opt/bash/run.sh tty
+    source $(dirname $(readlink -f $BASH_SOURCE))/run.sh tty
   }
 }
 #---------------------------------------------------

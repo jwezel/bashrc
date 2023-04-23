@@ -1,6 +1,4 @@
-[ -n "$BASH_DEBUG" ] && echo Running $0
+[ -n "$BASH_DEBUG" ] && echo Running $BASH_SOURCE
 [ -f ~/.bashrc ] && . ~/.bashrc
-for dir in /opt/bash ~/.bash; do
-  [ -f $dir/run.sh ] && source $dir/run.sh profile
-done
+[ -f $(dirname $(readlink -f $BASH_SOURCE))/run.sh ] && source $(dirname $(readlink -f $BASH_SOURCE))/run.sh profile
 #-------------------------------------------------
