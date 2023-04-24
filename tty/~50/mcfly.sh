@@ -1,1 +1,1 @@
-eval "$(mcfly init bash)"
+type -p mcfly > /dev/null && eval "$(mcfly init bash)"
