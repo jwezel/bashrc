@@ -22,7 +22,6 @@ nv () {
   dir="${args[-1]}"
   args[-1]="${args[-1]}/.venv"
   mkdir -p "${args[-1]}"
-  python -mvenv "${args[*]}" --prompt="$dir" && cd "${args[-1]}" && e
+  python -mvenv "${args[*]}" --upgrade-deps --prompt="$dir" && cd "${args[-1]}" && e
   cd ..
 }
-
