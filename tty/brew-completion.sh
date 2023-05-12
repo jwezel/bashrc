@@ -11,3 +11,4 @@ then
     done
   fi
 fi
+export HOMEBREW_EVAL_ALL=y

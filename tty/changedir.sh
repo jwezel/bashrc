@@ -14,17 +14,17 @@ changedir () {
 }
 
 cd () {
-    builtin cd "${1:-$HOME}"
+    builtin cd "${1:-$HOME}" &&
     changedir
 }
 
 pushd () {
-    builtin pushd "${1:-$HOME}"
+    builtin pushd "${1:-$HOME}" &&
     changedir
 }
 
 popd () {
-    builtin popd
+    builtin popd &&
     changedir
 }
 
