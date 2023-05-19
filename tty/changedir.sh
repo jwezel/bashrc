@@ -2,7 +2,7 @@ changedir () {
     local OLDDIR NEWDIR d p;
     OLDDIR="$OLDPWD";
     source <(
-        for NEWDIR in `(p=$(realpath --relative-to="$OLDPWD" "$PWD") ; until [ "$p" = . ]; do echo $(realpath "$OLDPWD/$p"); p=$(dirname "$p"); done) | tac`; do
+        for NEWDIR in `(p=$(realpath --quiet --relative-to="$OLDPWD" "$PWD") ; until [ "$p" = . ]; do echo $(realpath --quiet "$OLDPWD/$p"); p=$(dirname "$p"); done) | tac`; do
             [ -v DEBUG_CHANGEDIR ] && echo "# $OLDDIR -> $NEWDIR";
             [ -x "$OLDDIR/.leave" ] && OLDDIR="$OLDDIR" NEWDIR="$NEWDIR" "$OLDDIR/.leave";
             [ -x "$NEWDIR/.enter" ] && OLDDIR="$OLDDIR" NEWDIR="$NEWDIR" "$NEWDIR/.enter";
