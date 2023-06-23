@@ -1,0 +1,1 @@
+export XONSH_COLOR_STYLE=native
