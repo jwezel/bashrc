@@ -66,7 +66,7 @@ HISTFILESIZE=100000
 HISTCONTROL="erasedups:ignoreboth"
 
 # Don't record some commands
-export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
+export HISTIGNORE="&:[ ]*:exit:reset:pwd:bg:fg:history:hh:hstr:clear"
 
 # Use standard ISO 8601 timestamp
 # %F equivalent to %Y-%m-%d
