@@ -34,6 +34,7 @@ elif type -p lc > /dev/null; then
 fi
 
 alias beep="printf '\a'"
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
