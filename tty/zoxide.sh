@@ -1,1 +1,1 @@
-eval "$(zoxide init bash | sed 's/\\builtin cd/cd/g')"
+eval "$(zoxide init bash | sed 's/\\builtin cd --/cd/g')"
