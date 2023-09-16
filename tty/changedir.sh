@@ -6,8 +6,8 @@ changedir () {
             [ -v DEBUG_CHANGEDIR ] && echo "# $OLDDIR -> $NEWDIR";
             [ -x "$OLDDIR/.leave" ] && OLDDIR="$OLDDIR" NEWDIR="$NEWDIR" "$OLDDIR/.leave";
             [ -x "$NEWDIR/.enter" ] && OLDDIR="$OLDDIR" NEWDIR="$NEWDIR" "$NEWDIR/.enter";
-            [ $(dirname "$NEWDIR") = "$OLDDIR" -a -x "$NEWDIR/.in" ] && OLDDIR="$OLDDIR" NEWDIR="$NEWDIR" "$NEWDIR/.in";
             [ $(dirname "$OLDDIR") = "$NEWDIR" -a -x "$OLDDIR/.out" ] && OLDDIR="$OLDDIR" NEWDIR="$NEWDIR" "$OLDDIR/.out";
+            [ $(dirname "$NEWDIR") = "$OLDDIR" -a -x "$NEWDIR/.in" ] && OLDDIR="$OLDDIR" NEWDIR="$NEWDIR" "$NEWDIR/.in";
             OLDDIR="$NEWDIR";
         done
     )
