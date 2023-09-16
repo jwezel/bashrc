@@ -14,6 +14,7 @@ changedir () {
 }
 
 cd () {
+    [[ "$1" == '--' ]] && shift
     builtin cd "${1:-$HOME}" &&
     changedir
 }
