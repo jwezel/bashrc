@@ -20,6 +20,7 @@ cd () {
 }
 
 pushd () {
+    [[ "$1" == '--' ]] && shift;
     builtin pushd "${1:-$HOME}" &&
     changedir
 }
