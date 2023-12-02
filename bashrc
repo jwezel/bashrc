@@ -1,15 +1,15 @@
 [ -z "$HOME" ] && {
-    export HOME="$(dirname $(readlink -f $BASH_SOURCE))"
-    echo HOME not set in $BASH_SOURCE. Detected $HOME
+    export HOME="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
+    echo HOME not set in ${BASH_SOURCE[0]}. Detected $HOME
 }
-[ -n "$BASH_DEBUG" ] && echo Running $BASH_SOURCE
+[ -n "$BASH_DEBUG" ] && echo Running ${BASH_SOURCE[0]}
 [ -f ~/.bash_debug ] && source ~/.bash_debug
 [ -f ~/.bash_functions ] && source ~/.bash_functions
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
-[ -f $(dirname $(readlink -f $BASH_SOURCE))/.bash/run.sh ] && {
-  source $(dirname $(readlink -f $BASH_SOURCE))/.bash/run.sh rc
+[ -f ~/.bash/run.sh ] && {
+  source ~/.bash/run.sh rc
   [[ $- =~ i ]] && {
-    source $(dirname $(readlink -f $BASH_SOURCE))/.bash/run.sh tty
+    source ~/.bash/run.sh tty
   }
 }
 #---------------------------------------------------
