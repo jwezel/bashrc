@@ -4,5 +4,8 @@
 }
 [ -n "$BASH_DEBUG" ] && echo Running ${BASH_SOURCE[0]}
 [ -f ~/.bashrc ] && . ~/.bashrc
-[ -f ~/.bash/run.sh ] && source ~/.bash/run.sh profile
+[ -f ~/.bash/run.sh ] && {
+	source ~/.bash/run.sh profile
+	source ~/.bash/run.sh tty
+}
 #-------------------------------------------------

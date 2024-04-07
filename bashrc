@@ -8,7 +8,7 @@
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 [ -f ~/.bash/run.sh ] && {
   source ~/.bash/run.sh rc
-  [[ $- =~ i ]] && {
+  [[ $- =~ i && $BASHOPTS != *login_shell* ]] && {
     source ~/.bash/run.sh tty
   }
 }
