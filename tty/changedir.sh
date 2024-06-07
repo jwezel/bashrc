@@ -1,29 +1,32 @@
 changedir () {
-    local olddir newdir nextDir currentDir level p;
-    olddir="$OLDPWD";
+    local olddir newdir nextDir currentDir level p list
+    olddir="$OLDPWD"
     source <(
-        for newdir in $(
-            (
-                p=$(realpath --quiet --relative-to="$OLDPWD" "$PWD")
-                until [ "$p" = . ]; do
-                    echo $(realpath --quiet "$OLDPWD/$p")
-                    p=$(dirname "$p")
-                done
-            ) | tac
-        ); do
+        eval list=(
+            $(
+                (
+                    p="$(realpath --quiet --relative-to="$OLDPWD" "$PWD")"
+                    until [ "$p" = . ]; do
+                        echo "'$(realpath --quiet "$OLDPWD/$p")'"
+                        p="$(dirname "$p")"
+                    done
+                ) | tac
+            )
+        )
+        for newdir in "${list[@]}"; do
             [ -v DEBUG_CHANGEDIR ] && echo "echo $olddir '->' $newdir"
             nextDir="$olddir"
             currentDir=''
             level=''
             while [[ "$nextDir" != "$currentDir" ]]; do
                 currentDir="$nextDir"
-                nextDir=$(realpath "$nextDir"/..)
+                nextDir="$(realpath "$nextDir"/..)"
                 [ -v DEBUG_CHANGEDIR ] && echo "echo Checking old '$currentDir' at level ${level:-0}"
                 [ -x "$currentDir/.leave$level" ] && {
                     [ -v DEBUG_CHANGEDIR ] && echo "echo Running '$currentDir/.leave$level'"
                     OLDDIR="$olddir" NEWDIR="$newdir" "$currentDir/.leave$level"
                 }
-                [ $(dirname "$olddir") = "$newdir" -a -x "$currentDir/.out$level" ] && {
+                [ "$(dirname "$olddir")" = "$newdir" -a -x "$currentDir/.out$level" ] && {
                     [ -v DEBUG_CHANGEDIR ] && echo "echo Running '$currentDir/.out$level'"
                     OLDDIR="$olddir" NEWDIR="$newdir" "$currentDir/.out$level"
                 }
@@ -34,13 +37,13 @@ changedir () {
             level=''
             while [[ "$nextDir" != "$currentDir" ]]; do
                 currentDir="$nextDir"
-                nextDir=$(realpath "$nextDir"/..)
+                nextDir="$(realpath "$nextDir"/..)"
                 [ -v DEBUG_CHANGEDIR ] && echo "echo Checking new '$currentDir' at level ${level:-0}"
                 [ -x "$currentDir/.enter$level" ] && {
                     [ -v DEBUG_CHANGEDIR ] && echo "echo Running '$currentDir/.enter$level'"
                     OLDDIR="$olddir" NEWDIR="$newdir" "$currentDir/.enter$level"
                 }
-                [ $(dirname "$newdir") = "$olddir" -a -x "$currentDir/.in$level" ] && {
+                [ "$(dirname "$newdir")" = "$olddir" -a -x "$currentDir/.in$level" ] && {
                     [ -v DEBUG_CHANGEDIR ] && echo "echo Running '$currentDir/.in$level'"
                     OLDDIR="$olddir" NEWDIR="$newdir" "$currentDir/.in$level"
                 }
