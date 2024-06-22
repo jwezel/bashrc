@@ -1,1 +1,1 @@
-[[ "$-" =~ "i" ]] && type -tP task && task
+[[ "$-" =~ "i" ]] && type -tP task > /dev/null && task
