@@ -7,8 +7,10 @@
 [ -f ~/.bash_functions ] && source ~/.bash_functions
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 [ -f ~/.bash/run.sh ] && {
+  [ -n "$BASH_DEBUG" ] && echo Running rc
   source ~/.bash/run.sh rc
   [[ $- =~ i && $BASHOPTS != *login_shell* ]] && {
+    [ -n "$BASH_DEBUG" ] && echo Running tty
     source ~/.bash/run.sh tty
   }
 }

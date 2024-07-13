@@ -6,6 +6,9 @@
 [ -f ~/.bashrc ] && . ~/.bashrc
 [ -f ~/.bash/run.sh ] && {
 	source ~/.bash/run.sh profile
-	source ~/.bash/run.sh tty
+	[ -n "$BASH_DEBUG" ] && echo '$-='$-
+	[[ $- =~ i ]] && {
+	    source ~/.bash/run.sh tty
+    }
 }
 #-------------------------------------------------
