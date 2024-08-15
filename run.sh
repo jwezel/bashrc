@@ -3,7 +3,7 @@
     return 1
 }
 [ -d "$(dirname ${BASH_SOURCE[0]})/$1" ] || return 1
-find "$(dirname ${BASH_SOURCE[0]})/$1" -type f -name '*.sh' | LC_ALL=C.UTF8 sort > /tmp/$$.tmp
+find "$(dirname ${BASH_SOURCE[0]})/$1"/ -type f,l -name '*.sh' | LC_ALL=C.UTF8 sort > /tmp/$$.tmp
 while read file; do
     [ -n "$BASH_DEBUG" ] && echo Sourcing $file
     source "$file"
