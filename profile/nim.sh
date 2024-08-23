@@ -1,1 +1,0 @@
-addprefix -q ~/.nimble

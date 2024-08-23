@@ -1,1 +1,3 @@
-/home/j/.ssh/env/bitwarden.sh
+[ -e "~/.ssh/bitwarden-session-token" ] && {
+  export BW_SESSION="$(cat ~/.ssh/bitwarden-session-token)"
+}
