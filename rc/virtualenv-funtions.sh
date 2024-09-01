@@ -19,9 +19,8 @@ e() {
 #   directory-path
 nv () {
   local args=("$@")
-  dir="${args[-1]}"
-  args[-1]="${args[-1]}/.venv"
-  mkdir -p "${args[-1]}"
-  python -mvenv "${args[*]}" --upgrade-deps --prompt="$dir" && cd "${args[-1]}" && e
-  cd ..
+  local dir="${args[-1]}"
+  local edir="${args[-1]}/.venv"
+  mkdir -p "$dir"
+  python -mvenv "${args[*]}" --upgrade-deps --prompt="$dir" && cd "$dir" && e
 }
