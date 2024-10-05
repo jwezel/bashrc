@@ -1,0 +1,1 @@
+alias kss='kitten ssh'
