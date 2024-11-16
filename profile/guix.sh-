@@ -1,0 +1,5 @@
+addprefix -q "/home/j/.guix-profile"
+export VDPAU_DRIVER_PATH="/home/j/.guix-profile/lib/vdpau"
+addpath "/home/j/.guix-profile/share" XDG_DATA_DIRS
+export GDK_PIXBUF_MODULE_FILE="/home/j/.guix-profile/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache"
+export GIO_EXTRA_MODULES="/home/j/.guix-profile/lib/gio/modules"
