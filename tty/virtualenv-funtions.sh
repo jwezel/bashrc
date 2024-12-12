@@ -19,7 +19,9 @@ e() {
 #   directory-path
 nv () {
   local opts args posarg
-  eval opts=($(getopt --options h --long system-site-packages,symlinks,copies,clear,upgrade,without-pip,prompt:,upgrade-deps -- "$@"))
+  eval opts=(
+    $(getopt --options h --long system-site-packages,symlinks,copies,clear,upgrade,without-pip,prompt:,upgrade-deps -- "$@")
+  )
   args=("${opts[@]}")
   posarg=''
   for ((i=0; i<${#opts[*]}; ++i)); do
@@ -32,7 +34,7 @@ nv () {
   local dir="${args[posarg]}"
   local edir="$dir/.venv"
   mkdir -p "$dir"
-  python -mvenv --upgrade-deps --prompt "$dir" "${opts[@]}" && cd "$dir" && e
+  python3 -mvenv --upgrade-deps --prompt "$dir" "${opts[@]}" && cd "$dir" && e
 }
 
 # Deactivate virtual environment
