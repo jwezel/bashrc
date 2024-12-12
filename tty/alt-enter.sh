@@ -1,1 +1,1 @@
-bind '"\e\C-m": "\C-e|t\C-m"'
+bind '"\e\C-m": "\C-e|&t\C-m"'

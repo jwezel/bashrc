@@ -18,9 +18,22 @@ e() {
 # Args:
 #   directory-path
 nv () {
-  local args=("$@")
-  local dir="${args[-1]}"
-  local edir="${args[-1]}/.venv"
+  local opts args posarg
+  eval opts=($(getopt --options h --long system-site-packages,symlinks,copies,clear,upgrade,without-pip,prompt:,upgrade-deps -- "$@"))
+  args=("${opts[@]}")
+  posarg=''
+  for ((i=0; i<${#opts[*]}; ++i)); do
+    if [ -n "$posarg" ]; then
+      opts[i]="${opts[i]}/.venv"
+    elif [ "${opts[i]}" = '--' ]; then
+      posarg=$((i + 1))
+    fi
+  done
+  local dir="${args[posarg]}"
+  local edir="$dir/.venv"
   mkdir -p "$dir"
-  python -mvenv "${args[*]}" --upgrade-deps --prompt="$dir" && cd "$dir" && e
+  python -mvenv --upgrade-deps --prompt "$dir" "${opts[@]}" && cd "$dir" && e
 }
+
+# Deactivate virtual environment
+alias d="deactivate"
