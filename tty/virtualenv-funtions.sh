@@ -18,23 +18,45 @@ e() {
 # Args:
 #   directory-path
 nv () {
+  set -x
   local opts args posarg
   eval opts=(
-    $(getopt --options h --long system-site-packages,symlinks,copies,clear,upgrade,without-pip,prompt:,upgrade-deps -- "$@")
+    $(
+      getopt \
+        --options hp: \
+        --long system-site-packages,symlinks,copies,clear,upgrade,without-pip,prompt:,upgrade-deps,python: \
+        -- \
+        "$@"
+    )
   )
   args=("${opts[@]}")
   posarg=''
-  for ((i=0; i<${#opts[*]}; ++i)); do
+  lopts=${#opts[*]}
+  for ((i=0; i<$lopts; ++i)); do
     if [ -n "$posarg" ]; then
       opts[i]="${opts[i]}/.venv"
-    elif [ "${opts[i]}" = '--' ]; then
-      posarg=$((i + 1))
+    else
+      case "${opts[i]}" in
+
+        '-p' | '--python')
+        interp="${opts[i + 1]}"
+        unset opts[i]
+        unset "opts[i+1]"
+        ;;
+
+        '--')
+        posarg=$((i + 1))
+        ;;
+      esac
     fi
   done
+  echo $posarg
+  echo "${opts[*]}"
   local dir="${args[posarg]}"
   local edir="$dir/.venv"
   mkdir -p "$dir"
-  python3 -mvenv --upgrade-deps --prompt "$dir" "${opts[@]}" && cd "$dir" && e
+  ${interp:-python3} -mvenv --upgrade-deps --prompt "$dir" "${opts[@]}" && cd "$dir" && e
+  set +x
 }
 
 # Deactivate virtual environment
