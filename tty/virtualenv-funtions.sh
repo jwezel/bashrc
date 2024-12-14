@@ -49,8 +49,6 @@ nv () {
       esac
     fi
   done
-  echo $posarg
-  echo "${opts[*]}"
   local dir="${args[posarg]}"
   local edir="$dir/.venv"
   mkdir -p "$dir"
