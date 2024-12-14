@@ -18,7 +18,6 @@ e() {
 # Args:
 #   directory-path
 nv () {
-  set -x
   local opts args posarg
   eval opts=(
     $(
@@ -56,7 +55,6 @@ nv () {
   local edir="$dir/.venv"
   mkdir -p "$dir"
   ${interp:-python3} -mvenv --upgrade-deps --prompt "$dir" "${opts[@]}" && cd "$dir" && e
-  set +x
 }
 
 # Deactivate virtual environment
