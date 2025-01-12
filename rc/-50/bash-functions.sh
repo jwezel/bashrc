@@ -58,7 +58,7 @@ function addpath() {
             continue 2
         }
         [ "$verbose" -gt 0 ] && echo "$arg added to $varname"
-        newpath="$newpath""$sep""$arg"
+        newpath="$newpath""$sep""$argdir"
         sep=":"
     done
     [ -n "$newpath" ] && export $varname="$newpath"
@@ -112,7 +112,7 @@ function inspath() {
             continue 2
         }
         [ "$verbose" -gt 0 ] && echo "$arg inserted into $varname"
-        newpath="$arg""$sep""$newpath"
+        newpath="$argdir""$sep""$newpath"
         sep=":"
     done
     [ -n "$newpath" ] && export $varname="$newpath"
