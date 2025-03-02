@@ -1,3 +1,3 @@
 if [ -d ~/.codon ]; then
-  addprefix ~/.codon
+  addprefix -q ~/.codon
 fi
