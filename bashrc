@@ -15,6 +15,6 @@
       source ~/.bash/run.sh tty
     }
   }
+  export BASHRC=done
 }
-export BASHRC=done
 #---------------------------------------------------
