@@ -8,6 +8,6 @@
 		exit 1
 	}
 	DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
-	cp -bv "$DIR/bashrc" ~/.bashrc
-	cp -bv "$DIR/bash_profile" ~/.bash_profile
+	cp -sbv "$DIR/bashinit" ~/.bashrc
+	cp -sbv "$DIR/bashinit" ~/.bash_profile
 )

@@ -1,0 +1,5 @@
+[ -f ~/.bash/run.sh ] && {
+  [[ $- =~ i ]] && {
+    source ~/.bash/run.sh tty
+  }
+}

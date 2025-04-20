@@ -66,7 +66,7 @@ HISTFILESIZE=100000
 HISTCONTROL="erasedups:ignoreboth"
 
 # Don't record some commands
-export HISTIGNORE="&:[ ]*:exit:reset:pwd:bg:fg:history:hh:hstr:clear"
+HISTIGNORE="&:[ ]*:exit:reset:pwd:bg:fg:history:hh:hstr:clear"
 
 # Use standard ISO 8601 timestamp
 # %F equivalent to %Y-%m-%d
@@ -103,4 +103,3 @@ shopt -s cdable_vars
 # export projects="$HOME/projects"
 # export documents="$HOME/Documents"
 # export dropbox="$HOME/Dropbox"
-

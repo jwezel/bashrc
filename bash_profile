@@ -1,14 +1,12 @@
-[ -z "$HOME" ] && {
+[ -z "$BASH_PROFILE" ] && {
+  export BASH_PROFILE=running
+  [ -z "$HOME" ] && {
     export HOME="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
     echo HOME not set in ${BASH_SOURCE[0]}. Detected $HOME
-}
-[ -n "$BASH_DEBUG" ] && echo Running ${BASH_SOURCE[0]}
-[ -f ~/.bashrc ] && . ~/.bashrc
-[ -f ~/.bash/run.sh ] && {
-	source ~/.bash/run.sh profile
-	[ -n "$BASH_DEBUG" ] && echo '$-='$-
-	[[ $- =~ i ]] && {
-	    source ~/.bash/run.sh tty
-    }
+  }
+  [ -f ~/.bash/run.sh ] && {
+  	source ~/.bash/run.sh profile
+  }
+  export BASH_PROFILE=done
 }
 #-------------------------------------------------
