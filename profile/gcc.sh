@@ -1,1 +1,1 @@
-inspath -q "/opt/link/gcc/current" PATH
+inspath -q "/opt/gcc/current/bin" PATH
