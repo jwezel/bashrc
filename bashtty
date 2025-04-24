@@ -1,3 +1,4 @@
+[ -n "$BASH_DEBUG" ] && echo ">> ${BASH_SOURCE[0]}: Running"
 [ -f ~/.bash/run.sh ] && {
   [[ $- =~ i ]] && {
     source ~/.bash/run.sh tty

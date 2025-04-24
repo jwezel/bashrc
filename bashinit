@@ -1,5 +1,6 @@
 #set -x
-. .bash/bashrc
-. .bash/bash_profile
-. .bash/bashtty
+. ~/.bash/bashrc
+. ~/.bash/bash_profile
+. ~/.bash/bashtty
 #set +x
+
